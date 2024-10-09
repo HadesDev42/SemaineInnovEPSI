@@ -1,4 +1,4 @@
-const API_BASE_URL = 'http://localhost:8000/api/trainings/'; // Remplacez par votre URL API
+const API_BASE_URL = 'http://localhost:8000/api/'; // Remplacez par votre URL API
 
 export const fetchData = async (endpoint) => {
     try {
