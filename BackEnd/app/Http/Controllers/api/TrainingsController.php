@@ -32,4 +32,15 @@ class TrainingsController extends Controller
 
         return response()->json(['trainings' => $trainings]);
     }
+
+    public function getByID(Request $request)
+    {
+        // Get training by ID
+        $training = Training::find($request->route('id'));
+        if (is_null($training)) {
+            return response()->json(['message' => 'Training not found'], 404);
+        }
+
+        return response()->json(['training' => $training]);
+    }
 }
