@@ -41,10 +41,10 @@ export const Home = () => {
       </div>
 
       <div className="services">
-          <div className="service">
+          <NavLink to="/allergy" className="service"> {/* NavLink autour de la div entière */}
             <FaClinicMedical className="service-icon" />
-            <NavLink to="/allergy">Allergy</NavLink>
-          </div>
+            <p>Allergie</p>
+          </NavLink>
           <div className="service">
             <FaPrescriptionBottle className="service-icon" />
             <p>Pharmacie</p>

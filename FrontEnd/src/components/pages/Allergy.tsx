@@ -52,6 +52,13 @@ export const Allergy = () => {
             duration="5min de lecture"
           />
         </section>
+        <div>
+          <video width="600" controls>
+          <source src="/videos/epipen.mp4" type="video/mp4" />
+          Votre navigateur ne supporte pas la lecture de vidéo.
+          </video>
+        </div>
+
       </div>
     </div>
   );
