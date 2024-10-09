@@ -1,0 +1,129 @@
+/* src/components/Home.css */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    margin-top: 20px;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    background-color: #D5EDF2;
+    border-radius: 10px;
+    padding: 20px;
+  }
+  
+  .header-text {
+    max-width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+  }
+  
+  .header-image img {
+    width: 200px; /* Taille initiale plus petite */
+    height: auto;
+    max-width: 100%;
+  }
+  
+  /* Styles responsives pour les petits écrans */
+  @media (max-width: 768px) {
+    .header {
+      flex-direction: column;
+      text-align: center;
+    }
+  
+    .header-text {
+      max-width: 100%;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+  
+    .header-image img {
+      width: 150px; /* Réduit la taille sur les petits écrans */
+    }
+  }
+  .search-box {
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.search-form {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-form input {
+    width: 100%;
+    padding: 15px 15px 15px 40px; /* Élargit l'espace autour du texte */
+    border: 1px solid #E8F3F1;
+    border-radius: 25px;
+    background-color: #FBFBFB;
+}
+
+.search-icon {
+    position: absolute;
+    left: 10px;
+    color: #888;
+    font-size: 18px;
+}
+
+x
+.health-articles {
+    margin-top: 30px; /* Espace au-dessus de la section des articles */
+    padding-bottom: 20px; /* Espace en dessous du titre "Articles de santé" */
+}
+
+/* Style pour le titre "Articles de santé" */
+.health-articles h3 {
+    margin-bottom: 20px; /* Espace entre le titre et les articles */
+    font-size: 20px; /* Ajustez si nécessaire */
+    color: #333; /* Couleur du texte */
+    text-align: left; /* Alignement du texte */
+}
+
+/* Espace entre chaque composant d'article */
+.health-article {
+    margin-bottom: 20px; /* Espace entre chaque article */
+}
+
+/* Styles pour les services avec espacement */
+.services {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px; /* Espace au-dessus de la section des services */
+    margin-bottom: 20px; /* Espace en dessous de la section des services */
+}
+
+/* Styles pour les services avec fond bleu et texte en blanc */
+.service {
+    text-align: center;
+    flex: 1;
+    background-color: #007BFF; /* Couleur de fond bleu */
+    border-radius: 8px; /* Coins arrondis */
+    padding: 15px; /* Espace autour de l'icône et du texte */
+    margin: 0 10px; /* Espace horizontal entre les services */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #FFFFFF; /* Couleur de texte blanche */
+}
+
+/* Couleur blanche pour les icônes */
+.service-icon {
+    color: #FFFFFF; /* Couleur de l'icône blanche */
+    font-size: 24px;
+    margin-bottom: 10px; /* Espace entre l'icône et le texte */
+}
+
+/* Couleur blanche pour le texte du service */
+.service p {
+    color: #FFFFFF; /* Texte en blanc */
+    font-size: 16px; /* Taille du texte */
+}
