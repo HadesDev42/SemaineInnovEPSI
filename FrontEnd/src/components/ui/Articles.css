@@ -1,0 +1,43 @@
+.health-article {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+    background-color: #f9f9f9;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.article-image {
+    width: 50px; /* Ajustez selon la taille souhaitée */
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.article-content {
+    flex-grow: 1;
+}
+
+.article-title {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.article-info {
+    color: #888;
+    font-size: 14px;
+}
+
+.favorite-icon {
+    font-size: 24px;
+    cursor: pointer;
+    color: #1E90FF;
+}
+
+
+
+.favorite-icon svg.favorited {
+    color: #1E90FF;
+}
