@@ -14,6 +14,9 @@ export const Allergy = () => {
 
   return (
     <div className="container">
+        <div className="services">
+            caca
+        </div>
       <header style={{display: 'flex', justifyContent: 'center', width: '100%', backgroundColor: '#D5EDF2', borderRadius:' 10px'}}>
         <div className="header-text">
         </div>
