@@ -14,9 +14,10 @@ export const Allergy = () => {
 
   return (
     <div className="container">
-        <div className="services">
-            caca
+        <div>
+            <img src="src/img/learning.png" className="service-image" />
         </div>
+
       <header style={{display: 'flex', justifyContent: 'center', width: '100%', backgroundColor: '#D5EDF2', borderRadius:' 10px'}}>
         <div className="header-text">
         </div>
@@ -37,7 +38,7 @@ export const Allergy = () => {
       </div>
 
         <section className="health-articles">
-          <h3>Articles de santé</h3>
+          <h3>Les Différents types d'allergies</h3>
           <Articles
             img={"src/img/doctor.jpg"}
             title="Les 25 fruits les plus sains que vous pouvez manger, selon un nutritionniste"

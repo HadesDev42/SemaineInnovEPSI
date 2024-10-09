@@ -127,3 +127,10 @@ x
     color: #FFFFFF; /* Texte en blanc */
     font-size: 16px; /* Taille du texte */
 }
+
+.service-image {
+    width: 100%; /* Prend toute la largeur de la div */
+    height: 40%; /* Prend toute la hauteur de la div */
+    object-fit: cover; /* Couvre l'image sans la déformer */
+    border-radius: 10px; /* Ajoute des coins arrondis */
+}
