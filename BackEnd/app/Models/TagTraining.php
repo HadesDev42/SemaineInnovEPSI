@@ -2,16 +2,20 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
-class Tag extends Model
+class TagTraining extends Model
 {
+    use HasFactory;
+
     public $incrementing = false;
     protected $keyType = 'string';
 
     protected $fillable = [
-        'name',
+        'tag_id',
+        'training_id',
     ];
 
     protected static function boot()
@@ -22,8 +26,13 @@ class Tag extends Model
         });
     }
 
-    public function tagtrainings()
+    public function tag()
     {
-        return $this->hasMany(TagTraining::class);
+        return $this->belongsTo(Tag::class);
+    }
+
+    public function training()
+    {
+        return $this->belongsTo(Training::class);
     }
 }

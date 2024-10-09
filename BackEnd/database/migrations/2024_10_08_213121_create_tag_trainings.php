@@ -11,7 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tag_training', function (Blueprint $table) {
+        Schema::create('tag_trainings', function (Blueprint $table) {
+            $table->uuid('id')->primary();
             $table->uuid('training_id');  // Foreign key to trainings table
             $table->uuid('tag_id');  // Foreign key to tags table
             $table->timestamps();
@@ -25,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tag_training');
+        Schema::dropIfExists('tag_trainings');
     }
 };
