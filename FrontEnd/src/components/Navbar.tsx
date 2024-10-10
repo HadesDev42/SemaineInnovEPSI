@@ -9,14 +9,9 @@ export const Navbar = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const navigate = useNavigate();
 
-  // Vérifie la présence du cookie lors du montage du composant
-  useEffect(() => {
-    const token = Cookies.get("authToken");
-    setIsAuthenticated(!!token); // Authentifié si le token existe
-  }, []);
-
   const handleLinkClick = (event, path) => {
-    if (!isAuthenticated) {
+    const token = Cookies.get("authToken");
+    if (!token) {
       event.preventDefault();
       alert("Veuillez vous connecter pour accéder à cette page.");
       navigate("/login");
