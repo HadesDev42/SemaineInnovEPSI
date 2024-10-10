@@ -1,12 +1,32 @@
-import React, { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+// src/Navbar.js
+import React, { useState, useEffect } from "react";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 import "./Navbar.css";
 
 export const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const navigate = useNavigate();
+
+  // Vérifie la présence du cookie lors du montage du composant
+  useEffect(() => {
+    const token = Cookies.get("authToken");
+    setIsAuthenticated(!!token);
+  }, []);
+
+  const handleLinkClick = (event, path) => {
+    if (!isAuthenticated) {
+      event.preventDefault();
+      alert("Veuillez vous connecter pour accéder à cette page.");
+      navigate("/login");
+    } else {
+      navigate(path);
+    }
+  };
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+    <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
       <nav>
         <Link to="/" className="title">
           Website
@@ -19,13 +39,19 @@ export const Navbar = () => {
         </div>
         <ul className={menuOpen ? "open" : ""}>
           <li>
-            <NavLink to="/about">About</NavLink>
+            <NavLink to="/allergy" onClick={(e) => handleLinkClick(e, "/allergy")}>
+              Allergy
+            </NavLink>
           </li>
           <li>
-            <NavLink to="/services">Services</NavLink>
+            <NavLink to="/services" onClick={(e) => handleLinkClick(e, "/services")}>
+              Services
+            </NavLink>
           </li>
           <li>
-            <NavLink to="/contact">Contact</NavLink>
+            <NavLink to="/aboutus" onClick={(e) => handleLinkClick(e, "/aboutus")}>
+              AboutUs
+            </NavLink>
           </li>
           <li>
             <NavLink to="/signup">Signup</NavLink>

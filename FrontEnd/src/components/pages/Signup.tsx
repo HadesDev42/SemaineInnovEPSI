@@ -1,28 +1,54 @@
 // src/Signup.js
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom'; // Importation de Link pour la navigation
-import './Signup.css'; // Importation des styles CSS
+import { Link } from 'react-router-dom';
+import './Signup.css';
+import { postData } from '../../utils/api';
 
 export const Signup = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState(''); // Nouveau state pour la confirmation
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [name, setName] = useState('');
+  const [message, setMessage] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
       alert("Les mots de passe ne correspondent pas !");
       return;
     }
-    console.log('Email:', email);
-    console.log('Password:', password);
-    // Ajoutez ici la logique pour gérer l'inscription
+    
+    const userData = {
+      name: name,
+      email: email,
+      password: password,
+      c_password: confirmPassword
+    };
+
+    try {
+      const response = await postData('auth/register', userData);
+      console.log(response);
+      setMessage('Inscription réussie !'); // Message de succès
+    } catch (error) {
+      setMessage("Erreur lors de l'inscription : " + error.message);
+    }
   };
 
   return (
-    <div className="signup-container"> {/* Utilisation de la classe signup-container */}
+    <div className="signup-container">
       <h2>Inscription</h2>
       <form onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label htmlFor="name">Nom</label>
+          <input
+            type="text"
+            id="name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+            placeholder="Entrez votre nom"
+          />
+        </div>
         <div className="form-group">
           <label htmlFor="email">Adresse e-mail</label>
           <input
@@ -58,6 +84,7 @@ export const Signup = () => {
         </div>
         <button type="submit" className="btn">S'inscrire</button>
       </form>
+      {message && <p style={{ textAlign: 'center', marginTop: '20px', color: message.includes("Erreur") ? 'red' : 'green' }}>{message}</p>}
       <p style={{ textAlign: 'center', marginTop: '20px' }}>
         Vous avez déjà un compte ? <Link to="/login">Connexion ici</Link>
       </p>

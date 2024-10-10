@@ -1,0 +1,58 @@
+/* src/components/Services.css */
+
+/* Conteneur principal avec marges et alignement */
+.container {
+    margin: 0 auto;
+    margin-top: 20px;
+    padding: 20px;
+    max-width: 800px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Header du service */
+  .header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-color: #D5EDF2;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+  }
+  
+  /* Texte dans le header */
+  .header-text h1 {
+    font-size: 24px;
+    color: #007BFF;
+    text-align: center;
+    margin: 0;
+  }
+  
+  /* Contenu principal de la formation */
+  .training-content {
+    padding: 15px;
+    line-height: 1.6;
+    color: #333;
+    font-size: 16px;
+  }
+  
+  /* Vidéo de formation */
+  .training-video {
+    width: 100%;
+    height: auto;
+    margin-top: 15px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Loader et message d'erreur */
+  .loading, .error {
+    text-align: center;
+    color: #007BFF;
+    font-weight: bold;
+    font-size: 18px;
+  }
+  

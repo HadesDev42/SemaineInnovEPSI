@@ -1,17 +1,37 @@
 // src/Login.js
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom'; // Importation du Link pour la navigation
-import './Login.css'; // Importation des styles CSS
+import { Link, useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
+import { postData } from '../../utils/api';
+import './Login.css';
 
 export const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [message, setMessage] = useState('');
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Email:', email);
-    console.log('Password:', password);
-    // Ajoutez ici la logique pour gérer la connexion
+
+    const loginData = {
+      email,
+      password,
+    };
+
+    try {
+      const response = await postData('auth/login', loginData);
+
+      if (response && response.data.token) {
+        Cookies.set('authToken', response.data.token, { expires: 2 });
+        setMessage('Connexion réussie !');
+        navigate('/');
+      } else {
+        setMessage("Aucun token reçu lors de la connexion.");
+      }
+    } catch (error) {
+      setMessage("Erreur lors de la connexion : " + error.message);
+    }
   };
 
   return (
@@ -42,6 +62,7 @@ export const Login = () => {
         </div>
         <button type="submit" className="btn">Se connecter</button>
       </form>
+      {message && <p style={{ textAlign: 'center', marginTop: '20px', color: message.includes("Erreur") ? 'red' : 'green' }}>{message}</p>}
       <div className="signup-link">
         <p>
           Pas inscrit ? <Link to="/signup">Inscrivez-vous ici</Link>

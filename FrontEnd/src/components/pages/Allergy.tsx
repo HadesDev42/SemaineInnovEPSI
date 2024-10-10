@@ -1,11 +1,17 @@
 // src/components/Home.js
 import React, { useState } from "react";
-import './Allergy.css'; // Assurez-vous d'importer le fichier CSS
-import { FaSearch, FaClinicMedical, FaPrescriptionBottle, FaAmbulance } from "react-icons/fa"; // Import des icônes
-import Articles from "../ui/Articles";
+import './Allergy.css';
+import { FaSearch } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 export const Allergy = () => {
   const [searchQuery, setSearchQuery] = useState('');
+  const navigate = useNavigate();
+
+  const handleRedirect = (trainingId) => {
+    // Redirige vers /services avec l'ID de formation dans le state
+    navigate('/services', { state: { trainingId } });
+  };
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
@@ -14,51 +20,37 @@ export const Allergy = () => {
 
   return (
     <div className="container">
-        <div>
-            <img src="src/img/learning.png" className="service-image" />
-        </div>
+      <div>
+        <img src="src/img/learning.png" className="service-image" />
+      </div>
 
-      <header style={{display: 'flex', justifyContent: 'center', width: '100%', backgroundColor: '#D5EDF2', borderRadius:' 10px'}}>
-        <div className="header-text">
-        </div>
+      <header style={{ display: 'flex', justifyContent: 'center', width: '100%', backgroundColor: '#D5EDF2', borderRadius: '10px' }}>
+        <div className="header-text"></div>
       </header>
 
-
-      <div style={{backgroundColor: 'white', padding: '10px', borderRadius: '10px'}}>
-      <div className="search-box">
-        <form onSubmit={handleSearchSubmit} className="search-form">
-          <FaSearch className="search-icon" />
-          <input
-            type="text"
-            placeholder="Rechercher un médecin, des médicaments, des articles..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-          />
-        </form>
-      </div>
+      <div style={{ backgroundColor: 'white', padding: '10px', borderRadius: '10px' }}>
+        <div className="search-box">
+          <form onSubmit={handleSearchSubmit} className="search-form">
+            <FaSearch className="search-icon" />
+            <input
+              type="text"
+              placeholder="Rechercher un médecin, des médicaments, des articles..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+          </form>
+        </div>
 
         <section className="health-articles">
           <h3>Les Différents types d'allergies</h3>
-          <Articles
-            img={"src/img/doctor.jpg"}
-            title="Les 25 fruits les plus sains que vous pouvez manger, selon un nutritionniste"
-            date="Jun 10, 2023"
-            duration="5min de lecture"
-          />
-          <Articles
-            img={"src/img/earth.jpeg"}
-            title="L'impact du COVID-19 sur les systèmes de santé"
-            date="Jul 10, 2023"
-            duration="5min de lecture"
-          />
-        </section>
-        <div>
-          <video width="600" controls>
-          <source src="/videos/epipen.mp4" type="video/mp4" />
-          Votre navigateur ne supporte pas la lecture de vidéo.
-          </video>
-        </div>
 
+          <div onClick={() => handleRedirect('42949a5e-a4eb-406a-b5da-16f3344aa93c')} style={{ cursor: 'pointer', color: 'blue', textDecoration: 'underline' }}>
+            ICI
+          </div>
+          <div onClick={() => handleRedirect('2')} style={{ cursor: 'pointer', color: 'blue', textDecoration: 'underline' }}>
+            LA
+          </div>
+        </section>
       </div>
     </div>
   );

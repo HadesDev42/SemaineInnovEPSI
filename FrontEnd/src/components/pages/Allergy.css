@@ -1,10 +1,15 @@
 /* src/components/Home.css */
-.container {
-    max-width: 1200px;
+
+  /* Assurez-vous que le conteneur principal occupe au moins la hauteur de la fenêtre */
+  .container {
     margin: 0 auto;
     margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border-radius: 10px;
   }
-  
+
   .header {
     display: flex;
     justify-content: space-between;
