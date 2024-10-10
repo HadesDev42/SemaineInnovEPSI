@@ -10,6 +10,12 @@ class Choice extends Model
     public $incrementing = false;
     protected $keyType = 'string';
 
+    protected $fillable = [
+        'question_id',
+        'choice_text',
+        'is_correct',
+    ];
+
     protected static function boot()
     {
         parent::boot();
