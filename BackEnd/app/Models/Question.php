@@ -10,6 +10,11 @@ class Question extends Model
     public $incrementing = false;
     protected $keyType = 'string';
 
+    protected $fillable = [
+        'training_id',
+        'question_text',
+    ];
+
     protected static function boot()
     {
         parent::boot();
