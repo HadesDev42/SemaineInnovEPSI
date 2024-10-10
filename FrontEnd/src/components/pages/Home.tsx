@@ -18,7 +18,6 @@ export const Home = () => {
       <header style={{display: 'flex', justifyContent: 'center', width: '100%', backgroundColor: '#D5EDF2', borderRadius:' 10px'}}>
         <div className="header-text">
           <h1>Bienvenue !</h1>
-          <h2>NAME</h2>
           <p>Comment ça va aujourd'hui ?</p>
         </div>
         <div className="header-image">
