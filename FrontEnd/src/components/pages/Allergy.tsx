@@ -43,13 +43,26 @@
 
           <section className="health-articles">
             <h3>Les Différents types d'allergies</h3>
-
-            <div onClick={() => handleRedirect('42949a5e-a4eb-406a-b5da-16f3344aa93c')} style={{ cursor: 'pointer', color: 'blue', textDecoration: 'underline' }}>
-              ICI
-            </div>
-            <div onClick={() => handleRedirect('2')} style={{ cursor: 'pointer', color: 'blue', textDecoration: 'underline' }}>
-              LA
-            </div>
+            <button 
+              onClick={() => handleRedirect('42949a5e-a4eb-406a-b5da-16f3344aa93c')} 
+              style={{
+                cursor: 'pointer', 
+                backgroundColor: '#007bff', 
+                color: 'white', 
+                border: 'none', 
+                padding: '15px 30px', 
+                borderRadius: '5px', 
+                fontSize: '16px', 
+                textDecoration: 'none', 
+                width: '100%', 
+                maxWidth: '300px', 
+                display: 'block', 
+                margin: '20px auto', 
+                textAlign: 'center'
+              }}
+            >
+              Allergies Médicamenteuse
+            </button>
           </section>
         </div>
       </div>

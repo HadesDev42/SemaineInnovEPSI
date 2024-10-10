@@ -37,6 +37,7 @@ export const Services = () => {
   const [loading, setLoading] = useState(true);
   const [isFavorited, setIsFavorited] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [selectedChoice, setSelectedChoice] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchTrainingData = async () => {
@@ -102,9 +103,9 @@ export const Services = () => {
         if (!response.ok) {
           throw new Error('Erreur lors de la requête');
         }
-        const data = await response.json();
-        console.log("Question Data:", data); // Vérifie ce qui est récupéré
-        setQuestionData(data[0]); // Assure-toi que l'API renvoie un tableau
+        const result = await response.json();
+        console.log("Question Data:", result); // Vérifie ce qui est récupéré
+        setQuestionData(result.data[0]); // Assure-toi que l'API renvoie un tableau
       } catch (error) {
         setError("Erreur lors de la récupération des données.");
       } finally {
@@ -124,6 +125,19 @@ export const Services = () => {
     }
   };
 
+  const handleChoiceSelect = (choiceId: string) => {
+    setSelectedChoice(choiceId); // Mettre à jour le choix sélectionné
+  };
+
+  const handleValidate = () => {
+    const selectedChoiceData = choicesData?.find(choice => choice.id === selectedChoice);
+    if (selectedChoiceData?.is_correct) {
+      alert("Bonne réponse !");
+    } else {
+      alert("Mauvaise réponse !");
+    }
+  };
+
   const addFavorite = async () => {
     if (!trainingData) return;
 
@@ -139,7 +153,7 @@ export const Services = () => {
       });
 
       const result = await response.json();
-      
+
       if (response.ok && result.success) {
         setIsFavorited(true);
         alert("Ajouté aux favoris !");
@@ -196,9 +210,9 @@ export const Services = () => {
           throw new Error('Erreur lors de la requête');
         }
 
-        const data = await response.json();
-        console.log("Choices Data:", data); // Pour voir ce que tu récupères
-        setChoicesData(data);
+        const result = await response.json();
+        console.log("Choices Data:", result); // Pour voir ce que tu récupères
+        setChoicesData(result.data);
       } catch (error) {
         setError("Erreur lors de la récupération des données.");
       } finally {
@@ -232,18 +246,21 @@ export const Services = () => {
           <p>Aucune vidéo disponible</p>
         )}
       </div>
-
-      <button>Commencer le quiz</button>
-
       <div className="question">
-        <h2>Question</h2>
+        <h2>Question(s)</h2>
         <p>{questionData?.question_text}</p>
-        <ul>
+        <ul className='questions'>
           {choicesData?.map((choice) => (
-            <li key={choice.id}>{choice.choice_text}</li>
+            <li 
+              key={choice.id} 
+              className={selectedChoice === choice.id ? 'selected' : ''} // Appliquer une classe si sélectionné
+              onClick={() => handleChoiceSelect(choice.id)} // Rendre l'élément cliquable
+            >
+              {choice.choice_text}
+            </li>
           ))}
         </ul>
-        <button>Valider</button>
+        <button onClick={handleValidate}>Valider</button>
       </div>
     </div>
   );

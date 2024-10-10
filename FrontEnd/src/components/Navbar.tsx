@@ -29,7 +29,7 @@ export const Navbar = () => {
     <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
       <nav>
         <Link to="/" className="title">
-          Website
+          Med'help
         </Link>
         <div className="menu" onClick={() => setMenuOpen(!menuOpen)}>
           <span></span>

@@ -68,3 +68,22 @@
     color: #ffdd57; /* Couleur pour étoile pleine */
   }
   
+  ul.questions li {
+    cursor: pointer;
+    padding: 10px;
+    background-color: #f5f5f5;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    transition: background-color 0.3s;
+    list-style-type: none;
+  }
+  
+  ul.questions li:hover {
+    background-color: #ddd;
+  }
+  
+  ul.questions li.selected {
+    background-color: #4caf50;
+    color: white;
+  }
+  
