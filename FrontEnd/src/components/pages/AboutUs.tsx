@@ -3,7 +3,7 @@ import React from 'react';
 import './AboutUs.css';
 import { FaHandshake, FaUsers, FaProjectDiagram } from 'react-icons/fa';
 
-const AboutUs = () => {
+export const AboutUs = () => {
   return (
     <div className="about-us-container">
       <header className="about-header">
@@ -57,5 +57,3 @@ const AboutUs = () => {
     </div>
   );
 };
-
-export default AboutUs;

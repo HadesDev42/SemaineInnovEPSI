@@ -15,8 +15,8 @@ export const Login = () => {
     e.preventDefault();
 
     const loginData = {
-      email,
-      password,
+      email: email,
+      password: password,
     };
 
     try {

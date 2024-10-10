@@ -1,6 +1,7 @@
 // src/Signup.js
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie'; // Importer le module Cookies
 import './Signup.css';
 import { postData } from '../../utils/api';
 
@@ -10,6 +11,7 @@ export const Signup = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [name, setName] = useState('');
   const [message, setMessage] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -28,7 +30,13 @@ export const Signup = () => {
     try {
       const response = await postData('auth/register', userData);
       console.log(response);
-      setMessage('Inscription réussie !'); // Message de succès
+      setMessage('Inscription réussie !');
+      
+      // Stocker le token dans les cookies si la réponse est réussie
+      Cookies.set('authToken', response.data.token, { expires: 2 }); // Stocke le token pour 2 jours
+
+      // Rediriger l'utilisateur après l'inscription
+      navigate('/');
     } catch (error) {
       setMessage("Erreur lors de l'inscription : " + error.message);
     }

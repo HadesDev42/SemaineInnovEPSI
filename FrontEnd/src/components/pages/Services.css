@@ -56,3 +56,15 @@
     font-size: 18px;
   }
   
+  /* Style pour l'icône étoile */
+.favorite-icon {
+    font-size: 24px;
+    color: #d3d3d3; /* Couleur pour étoile vide */
+    transition: color 0.3s ease;
+    margin-left: 10px;
+  }
+  
+  .favorite-icon.favorited {
+    color: #ffdd57; /* Couleur pour étoile pleine */
+  }
+  

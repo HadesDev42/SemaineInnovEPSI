@@ -12,7 +12,7 @@ export const Navbar = () => {
   // Vérifie la présence du cookie lors du montage du composant
   useEffect(() => {
     const token = Cookies.get("authToken");
-    setIsAuthenticated(!!token);
+    setIsAuthenticated(!!token); // Authentifié si le token existe
   }, []);
 
   const handleLinkClick = (event, path) => {
@@ -21,7 +21,7 @@ export const Navbar = () => {
       alert("Veuillez vous connecter pour accéder à cette page.");
       navigate("/login");
     } else {
-      navigate(path);
+      navigate(path); // Autoriser la navigation si authentifié
     }
   };
 
