@@ -2,7 +2,7 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import { Navbar } from "./components/Navbar";
-import { Home, Services, Signup, Login, AboutUs } from "./components/pages";
+import { Home, Services, Signup, Login, AboutUs, Favorite} from "./components/pages";
 import { Allergy } from "./components/pages/Allergy";
 
 function App() {
@@ -16,6 +16,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/allergy" element={<Allergy />} />
+        <Route path="/favorite" element={<Favorite />} />
       </Routes>
     </div>
   );

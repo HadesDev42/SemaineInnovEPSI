@@ -109,12 +109,13 @@ export const Services = () => {
 
     const token = Cookies.get('authToken');
     try {
-      const response = await fetch(`http://localhost:8000/api/favorites/remove/${trainingData.id}`, {
-        method: 'DELETE',
+      const response = await fetch(`http://localhost:8000/api/favorites/remove/`, {
+        method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json',
         },
+        body: JSON.stringify({ training_id: trainingData.id }),
       });
 
       if (response.ok) {

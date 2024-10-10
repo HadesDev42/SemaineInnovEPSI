@@ -4,3 +4,4 @@ export * from "./Signup";
 export * from "./AboutUs";
 export * from "./Login";
 export * from "./Allergy";
+export * from "./Favorite";

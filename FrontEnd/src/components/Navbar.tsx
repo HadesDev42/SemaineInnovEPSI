@@ -49,8 +49,13 @@ export const Navbar = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/aboutus" onClick={(e) => handleLinkClick(e, "/aboutus")}>
+            <NavLink to="/aboutus">
               AboutUs
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/favorite" onClick={(e) => handleLinkClick(e, "/favorite")}>
+              Favorite
             </NavLink>
           </li>
           <li>
