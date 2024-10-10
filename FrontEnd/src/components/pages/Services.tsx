@@ -12,9 +12,28 @@ interface TrainingData {
   updated_at: string;
 }
 
+interface QuestionData {
+  id: string;
+  question_text: string;
+  training_id: string;
+  created_at: string;
+  updated_at: string;
+}
+
+interface ChoicesData {
+  id: string;
+  choice_text: string;
+  is_correct: boolean;
+  question_id: string;
+  created_at: string;
+  updated_at: string;
+}
+
 export const Services = () => {
   const location = useLocation();
   const [trainingData, setTrainingData] = useState<TrainingData | null>(null);
+  const [questionData, setQuestionData] = useState<QuestionData | null>(null);
+  const [choicesData, setChoicesData] = useState<Array<ChoicesData> | null>(null);
   const [loading, setLoading] = useState(true);
   const [isFavorited, setIsFavorited] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -42,6 +61,7 @@ export const Services = () => {
         if (!response.ok) throw new Error('Erreur lors de la requête pour les détails de la formation');
 
         const data = await response.json();
+        console.log("Training Data:", data); // Pour voir ce que tu récupères
         setTrainingData(data.training);
         
         const favoritesResponse = await fetch('http://localhost:8000/api/favorites/getUserFavorites', {
@@ -65,7 +85,35 @@ export const Services = () => {
       }
     };
 
+    const fetchQuestionData = async () => {
+      const trainingId = location.state?.trainingId;
+      if (!trainingId) {
+        setError("Aucun ID de formation trouvé.");
+        setLoading(false);
+        return;
+      }
+      try {
+        const response = await fetch(`http://localhost:8000/api/questions/getQuestionsByTrainingId/${trainingId}`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+        if (!response.ok) {
+          throw new Error('Erreur lors de la requête');
+        }
+        const data = await response.json();
+        console.log("Question Data:", data); // Vérifie ce qui est récupéré
+        setQuestionData(data[0]); // Assure-toi que l'API renvoie un tableau
+      } catch (error) {
+        setError("Erreur lors de la récupération des données.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
     fetchTrainingData();
+    fetchQuestionData();
   }, [location.state]);
 
   const handleFavoriteClick = async () => {
@@ -110,7 +158,7 @@ export const Services = () => {
     const token = Cookies.get('authToken');
     try {
       const response = await fetch(`http://localhost:8000/api/favorites/remove/${trainingData.id}`, {
-        method: 'DELETE',
+        method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json',
@@ -128,6 +176,38 @@ export const Services = () => {
       console.error("Erreur lors du retrait des favoris:", error);
     }
   };
+  useEffect(() => {
+    const fetchChoicesData = async () => {
+      if (!questionData) return; // Assure-toi que questionData est défini
+      const questionId = questionData.id;
+      if (!questionId) {
+        setError("Aucun ID de question trouvé.");
+        setLoading(false);
+        return;
+      }
+      try {
+        const response = await fetch(`http://localhost:8000/api/choices/getChoicesByQuestionId/${questionId}`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+        if (!response.ok) {
+          throw new Error('Erreur lors de la requête');
+        }
+
+        const data = await response.json();
+        console.log("Choices Data:", data); // Pour voir ce que tu récupères
+        setChoicesData(data);
+      } catch (error) {
+        setError("Erreur lors de la récupération des données.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (questionData) fetchChoicesData(); // Appelle seulement si questionData est défini
+  }, [questionData]);
 
   if (loading) return <p>Chargement...</p>;
   if (error) return <p>{error}</p>;
@@ -151,6 +231,19 @@ export const Services = () => {
         ) : (
           <p>Aucune vidéo disponible</p>
         )}
+      </div>
+
+      <button>Commencer le quiz</button>
+
+      <div className="question">
+        <h2>Question</h2>
+        <p>{questionData?.question_text}</p>
+        <ul>
+          {choicesData?.map((choice) => (
+            <li key={choice.id}>{choice.choice_text}</li>
+          ))}
+        </ul>
+        <button>Valider</button>
       </div>
     </div>
   );
