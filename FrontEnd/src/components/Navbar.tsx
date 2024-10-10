@@ -40,7 +40,7 @@ export const Navbar = () => {
         <ul className={menuOpen ? "open" : ""}>
           <li>
             <NavLink to="/allergy" onClick={(e) => handleLinkClick(e, "/allergy")}>
-              Allergy
+              Allergies
             </NavLink>
           </li>
           <li>
@@ -50,16 +50,16 @@ export const Navbar = () => {
           </li>
           <li>
             <NavLink to="/aboutus">
-              AboutUs
+              A propos
             </NavLink>
           </li>
           <li>
             <NavLink to="/favorite" onClick={(e) => handleLinkClick(e, "/favorite")}>
-              Favorite
+              Favoris
             </NavLink>
           </li>
           <li>
-            <NavLink to="/signup">Signup</NavLink>
+            <NavLink to="/signup">Inscription</NavLink>
           </li>
         </ul>
       </nav>
