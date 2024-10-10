@@ -1,12 +1,13 @@
-// src/components/Favorites.js
 import React, { useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
+import { useNavigate } from 'react-router-dom';
 import './Favorite.css';
 
 export const Favorite = () => {
   const [favorites, setFavorites] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchFavorites = async () => {
@@ -37,6 +38,10 @@ export const Favorite = () => {
     fetchFavorites();
   }, []);
 
+  const handleFavoriteClick = (trainingId) => {
+    navigate('/services', { state: { trainingId } });
+  };
+
   if (loading) return <p>Chargement des favoris...</p>;
   if (error) return <p>{error}</p>;
 
@@ -46,7 +51,12 @@ export const Favorite = () => {
       {favorites.length > 0 ? (
         <ul className="favorites-list">
           {favorites.map((favorite) => (
-            <li key={favorite.id} className="favorite-item">
+            <li
+              key={favorite.id}
+              className="favorite-item"
+              onClick={() => handleFavoriteClick(favorite.id)}
+              style={{ cursor: 'pointer' }}
+            >
               <h3>{favorite.title}</h3>
             </li>
           ))}
