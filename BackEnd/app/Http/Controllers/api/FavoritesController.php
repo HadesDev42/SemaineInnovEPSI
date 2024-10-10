@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Favorite;
 use App\Models\Training;
 use Validator;
+use App\Http\Controllers\API\BaseController;
 
 class FavoritesController extends BaseController
 {
@@ -32,12 +33,17 @@ class FavoritesController extends BaseController
     {
         // Remove a favorite
         $validator = Validator::make($request->all(), [
-            'id' => 'required|string',
+            'training_id' => 'required|string',
         ]);
+        $user = $request->user();
+        $request['user_id'] = $user->id;
+        if (!Favorite::where('user_id', $user->id)->where('training_id', $request->training_id)->exists()) {
+            return $this->sendError('Favorite not found.');
+        }
         if ($validator->fails()) {
             return $this->sendError('Validation Error.', $validator->errors());
         }
-        $favorite = Favorite::find($request->id);
+        $favorite = Favorite::where('user_id', $user->id)->where('training_id', $request->training_id)->first();
         if (is_null($favorite)) {
             return $this->sendError('Favorite not found.');
         }
