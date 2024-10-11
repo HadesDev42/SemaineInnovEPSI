@@ -27,19 +27,24 @@ export const AboutUs = () => {
         <h2>Notre équipe</h2>
         <div className="team-members">
           <div className="team-member">
-            <img src="src/img/pp.png" alt="Membre 1" className="team-photo" />
-            <h3>Jean Dupont</h3>
-            <p>Fondateur et Directeur</p>
+            <img src="src/img/h.png" alt="Membre 1" className="team-photo" />
+            <h3>Hadès Cuisinier</h3>
+            <p>Développeur Back-end & BDD</p>
           </div>
           <div className="team-member">
-            <img src="src/img/pp.png" alt="Membre 2" className="team-photo" />
-            <h3>Marie Durand</h3>
-            <p>Responsable du Développement</p>
+            <img src="src/img/t.png" alt="Membre 2" className="team-photo" />
+            <h3>Thibault Bernuz</h3>
+            <p>Développeur Front-end</p>
           </div>
           <div className="team-member">
-            <img src="src/img/pp.png" alt="Membre 3" className="team-photo" />
-            <h3>Luc Martin</h3>
-            <p>Designer UX/UI</p>
+            <img src="src/img/a.png" alt="Membre 3" className="team-photo" />
+            <h3>Allan BIVEGHE </h3>
+            <p>Analyste GRC</p>
+          </div>
+          <div className="team-member">
+            <img src="src/img/e.png" alt="Membre 3" className="team-photo" />
+            <h3>Emmanuella TONYE</h3>
+            <p>Analyste GRC</p>
           </div>
         </div>
       </section>
